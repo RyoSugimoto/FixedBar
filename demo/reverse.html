@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="examples.css">
+  <title>Multiple ranges example - FixedBar.js</title>
+</head>
+<body>
+
+<div id="bar"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <h2>The Bar</h2>
+  <a href="#link-in-the-bar-01">Link in the bar that is not focusable when it is disappears.</a>
+  <button id="bar-closer">Click this to close this bar</button>
+</div>
+
+<section class="not-target-range">
+  <h2>Fixed Bar - Example</h2>
+</section>
+
+<section class="target-range">
+  <h2>This section is a targeted range.</h2>
+</section>
+
+<section class="not-target-range">
+
+</section>
+
+<section class="target-range">
+  <h2>This section is a targeted range.</h2>
+</section>
+
+<section class="not-target-range" style="--height: 101vh;">End</section>
+
+
+
+<script src="../dist/fixed-bar.min.js"></script>
+<script>
+  const fixedBar = new FixedBar({
+    bar: '#bar',
+    range: '.target-range',
+    reverse: true,
+  });
+
+  const closer = document.querySelector('#bar-closer');
+  closer.addEventListener('click', e => {
+    e.preventDefault();
+    fixedBar.close(0);
+  })
+
+  window.addEventListener('resize', () => {
+    if (window.matchMedia(
+      '(min-width: 640px)'
+    ).matches) {
+      fixedBar.freeze(true)
+    } else {
+      fixedBar.restart()
+    }
+  })
+</script>
+</body>
+</html>
