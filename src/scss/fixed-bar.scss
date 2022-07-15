@@ -1,0 +1,29 @@
+:root {
+  --fixed-bar-position-top: auto;
+  --fixed-bar-position-bottom: 0;
+  --fixed-bar-position-left: 0;
+  --fixed-bar-position-right: auto;
+  --fixed-bar-transform-active: translate3d(0, 0, 0);
+  --fixed-bar-transform-hidden: translate3d(0, 100%, 0);
+  --fixed-bar-transition: transform .3s linear 0s;
+  --fixed-bar-width: 100%;
+  --fixed-bar-z-index: 1000;
+
+}
+
+[data-fixed-bar] {
+  position: fixed;
+  top: var(--fixed-bar-position-top);
+  right: var(--fixed-bar-position-right);
+  bottom: var(--fixed-bar-position-bottom);
+  left: var(--fixed-bar-position-left);
+  transform: var(--fixed-bar-transform-active);
+  transition: var(--fixed-bar-transition);
+  width: var(--fixed-bar-width);
+  z-index: var(--fixed-bar-z-index);
+
+  &[hidden] {
+    display: block;
+    transform: var(--fixed-bar-transform-hidden);
+  }
+}

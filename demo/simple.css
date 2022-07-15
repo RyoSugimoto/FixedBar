@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #333;
+  color: #FFF;
+}
+
+body {
+  font-size: 125%;
+  margin: 0;
+}
+
+[data-fixed-bar-range] {
+  --height: 200vh;
+  background: #840;
+  height: var(--height);
+  position: relative;
+}
+
+[data-fixed-bar-range] p {
+  color: #fff;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0;
+  padding: 1rem;
+  position: sticky;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+[data-fixed-bar-not-range] {
+  --height: 200vh;
+  height: var(--height);
+}
+
+#bar {
+  background: #7a4;
+  border-radius: 2rem 0 0 0;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .5);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+#bar a {
+  color: inherit;
+}

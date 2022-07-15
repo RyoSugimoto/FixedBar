@@ -19,14 +19,15 @@ export default class FixedBar {
     reverse?: boolean
     intersectionObserveOption?: IntersectionObserverInit
   }) {
-    if (typeof args.bar !== 'string') throw new Error(``)
+    if (typeof args.bar !== 'string') throw new Error(`FixedBar: The property 'bar' must be required.`)
     this.bar = document.querySelector(args.bar)
-    if (!this.bar) throw new Error(``)
+    if (!this.bar) throw new Error(`FixedBar: The Element doesn't exist.`)
+    this.bar.setAttribute('data-fixed-bar', '')
     this._switchState(this.isExpanded)
 
-    if (typeof args.range !== 'string') throw new Error(``)
+    if (typeof args.range !== 'string') throw new Error(`FixedBar: The property 'range' must be required.`)
     this.ranges = document.querySelectorAll(args.range)
-    if (!this.ranges) throw new Error(``)
+    if (!this.ranges || this.ranges.length === 0) throw new Error(`FixedBar: The range element is not found.`)
     if (typeof args.reverse !== 'undefined') this.reverse = args.reverse
     if (typeof args.intersectionObserveOption !== 'undefined') {
       this.intersectionObserveOption = args.intersectionObserveOption
@@ -53,7 +54,7 @@ export default class FixedBar {
     if ((!this.reverse && isIntersecting) || (this.reverse && !isIntersecting)) {
       this.open()
     } else {
-      this.close()
+      this.close(0)
     }
   }
 
@@ -68,11 +69,14 @@ export default class FixedBar {
     this.isExpanded = false
     this._switchState(false)
     if (typeof time === 'number' && time === 0) {
-      this.isClosedEternally = true
+      //
     } else if (typeof time === 'number' && time > 0) {
       this.revivalTimer = window.setTimeout(() => {
         window.clearTimeout(this.revivalTimer)
+        this.revivalTimer = undefined
       }, time)
+    } else {
+      this.isClosedEternally = true
     }
   }
 

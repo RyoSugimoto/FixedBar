@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../dist/fixed-bar.css">
+  <link rel="stylesheet" href="simple.css">
+  <title>Multiple ranges example - FixedBar.js</title>
+</head>
+<body>
+
+<div id="bar"
+  aria-live="polite"
+  aria-atomic="true"
+  hidden
+>
+  <h2>The Bar</h2>
+  <a href="#link-in-the-bar-01">Link in the bar that is not focusable when it is disappears.</a>
+  <button id="bar-closer">Click this to close this bar</button>
+</div>
+
+<section data-fixed-bar-not-range>
+  <h2>Fixed Bar - Example</h2>
+</section>
+
+<section data-fixed-bar-range>
+  <h2>This section is a targeted range.</h2>
+</section>
+
+<section data-fixed-bar-not-range>
+
+</section>
+
+<section data-fixed-bar-range>
+  <h2>This section is a targeted range.</h2>
+</section>
+
+<section data-fixed-bar-not-range style="--height: 101vh;">End</section>
+
+<script src="../dist/fixed-bar.min.js"></script>
+<script>
+  const fixedBar = new FixedBar({
+    bar: '#bar',
+    range: '[data-fixed-bar-range]',
+  });
+
+  // 閉じるボタン
+  const closer = document.querySelector('#bar-closer');
+
+  // 閉じるボタンをクリックするとfixedBarを閉じる
+  closer.addEventListener('click', e => {
+    // デフォルトのボタンアクションを抑制
+    e.preventDefault();
+    // 5秒後に復帰
+    fixedBar.close(5000);
+  })
+</script>
+
+</body>
+</html>
