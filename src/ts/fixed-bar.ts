@@ -1,6 +1,3 @@
-import 'intersection-observer'
-import 'wicg-inert'
-
 export default class FixedBar {
   bar: HTMLElement | null
   ranges: NodeListOf<HTMLElement> | null
